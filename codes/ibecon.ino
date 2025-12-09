@@ -1,7 +1,7 @@
 /*
-  Complete Getting Started Guide: https://RandomNerdTutorials.com/esp32-bluetooth-low-energy-ble-arduino-ide/
-  Based on Neil Kolban example for IDF: https://github.com/nkolban/esp32-snippets/blob/master/cpp_utils/tests/BLE%20Tests/SampleServer.cpp
-  Ported to Arduino ESP32 by Evandro Copercini
+  This code is used to work the ESP32 as Beacon.
+  Beacon is a device that continuously broadcasts short data packets using Bluetooth Low Energy. 
+  It does not require pairing and is designed for low power, long battery life.
 */
 
 #include <BLEDevice.h>
