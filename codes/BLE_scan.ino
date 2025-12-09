@@ -1,3 +1,7 @@
+// This code Scans nearby BLE (Bluetooth Low Energy) devices using ESP32.
+// It Retrieves device name, MAC address, and RSSI values of the beacon.
+// The beacon MAC addres is fed to the anchor as target device address .
+
 #include <BLEDevice.h>
 #include <BLEScan.h>
 #include <BLEUtils.h>
@@ -57,4 +61,5 @@ void loop() {
 
   // Delay before next scan
   delay(100);  // 5 seconds pause before next scan
+
 }
