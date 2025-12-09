@@ -1,3 +1,6 @@
+// This code is used to get the RSSI value of the target device.
+// It scans the device for 30 seconds
+
 #include <BLEDevice.h>
 #include <BLEScan.h>
 #include <BLEUtils.h>
@@ -5,7 +8,7 @@
 
 // BLE Configuration
 #define SCAN_TIME 2        // Duration to scan for BLE devices (seconds)
-#define RUN_DURATION 60000 // Run for 20 seconds (milliseconds)
+#define RUN_DURATION 60000 // Run for 60 seconds (milliseconds)
 
 // Target MAC address (lowercase)
 String targetMac = "3c:8a:1f:0c:69:06"; // Replace with your MAC 0x3C, 0x8A, 0x1F, 0x0C, 0x69, 0x06
