@@ -24,6 +24,9 @@ The system passively monitors BLE advertising packets, processes unstable RSSI m
 
 ## 🛠 Hardware Architecture
 
+<img width="334" height="319" alt="image" src="https://github.com/user-attachments/assets/575e6fa9-dd59-4571-add6-15785a4a3043" />
+
+
 The system utilizes **four ESP32 microcontrollers** in a distributed network:
 
 ### 1. Anchor Nodes (3x ESP32)
@@ -60,9 +63,11 @@ Distances are calculated using the **Log-Distance Path Loss Model**:
 ### 3. Localization Algorithms
 
 | Algorithm | Method | Strengths | Weaknesses |
-| :--- | :--- | :--- | :--- |
-| **Trilateration** | Intersection of 3 circles | Good in Line-of-Sight (LOS) | High sensitivity to RSSI errors; Fails in noisy environments |
-| **Min-Max** | Bounding box intersection | Robust against outliers; Computationally efficient | Slightly less precise in perfect conditions |
+| :--- | :--- | :--- | :--- | :--- |
+| **Trilateration** | Intersection of 3 circles | Good in Line-of-Sight (LOS) | High sensitivity to RSSI errors; Fails in noisy environments | <img width="391" height="324" alt="image" src="https://github.com/user-attachments/assets/6b3d5ad7-2f7f-43b6-85bc-7142617fb2c3" /> |
+
+| **Min-Max** | Bounding box intersection | Robust against outliers; Computationally efficient | Slightly less precise in perfect conditions | <img width="392" height="359" alt="image" src="https://github.com/user-attachments/assets/3a7d5305-eea4-4f71-9a80-98f2b91386b5" /> |
+
 
 ---
 
@@ -87,9 +92,17 @@ The Server Node hosts a web page accessible via browser:
 * **Visualize:** Real-time 2D plot of the room showing the target's estimated position.
 * **Debug:** Displays real-time RSSI values and calculated distances from all 3 anchors.
 
+Web page:
+ It is accessed by entering the ESP32 servers ip address on the users device browser.
+<img width="905" height="485" alt="image" src="https://github.com/user-attachments/assets/b4b5906b-ff5e-456f-a7e3-5c07d934b9e3" />
+<img width="909" height="488" alt="image" src="https://github.com/user-attachments/assets/9271877d-c138-4dd5-84f5-5acbd5daa6a9" />
+<img width="888" height="635" alt="image" src="https://github.com/user-attachments/assets/1d0f0455-900b-4deb-b1e2-98fa6460b1f4" />
+
+
+
 ---
 
-## 📂 Folder Structure
+
 
 
 
