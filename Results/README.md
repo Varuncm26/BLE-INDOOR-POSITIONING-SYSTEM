@@ -68,6 +68,7 @@ The Kalman Filter consistently provided lower error rates, especially at distanc
 
 <img width="522" height="248" alt="image" src="https://github.com/user-attachments/assets/833a8ca9-a5bd-489f-acbf-a392a9112395" />
 
+> *Figure 5: Computed distance error.*
 ---
 
 ## 5. Localization Algorithm Comparison
@@ -75,7 +76,7 @@ We tested the system at various known coordinates to compare **Trilateration** v
 
 > <img width="431" height="426" alt="image" src="https://github.com/user-attachments/assets/43bdc1ad-0b43-451c-90bf-cbc72192bd54" />
 
-> *Figure 5: Conceptual coordinate grid used for localization algorithms.*
+> *Figure 6: Conceptual coordinate grid used for localization algorithms.*
 
 **Performance Results:**
 The **Min-Max algorithm** demonstrated superior robustness.In cases where RSSI noise caused Trilateration to calculate coordinates outside the room boundaries (e.g., Test Case 6), Min-Max provided a valid estimate .
