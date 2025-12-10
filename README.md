@@ -1,99 +1,95 @@
 
-📌 Project Overview
+# 📍 Low-Cost BLE Indoor Localization System using ESP32
 
-This project presents a low-cost Bluetooth Low Energy (BLE) device monitoring and indoor localization system implemented using ESP32 microcontrollers. It is designed to detect, track, and visualize active BLE devices in restricted or sensitive indoor environments such as examination halls, laboratories, and secure zones.
+![Platform](https://img.shields.io/badge/Platform-ESP32-red)
+![Language](https://img.shields.io/badge/Language-C%2B%2B%20%2F%20Arduino-blue)
+![Connectivity](https://img.shields.io/badge/Connectivity-BLE%20%26%20ESP--NOW-green)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 
-The system passively monitors BLE advertising packets, processes unstable RSSI measurements using Kalman filtering, estimates distance via a log-distance path loss model, and localizes devices using Trilateration and Min-Max algorithms. A web-based interface provides real-time visualization of detected devices and their estimated positions.
+## 📖 Project Overview
 
+This project presents a **Bluetooth Low Energy (BLE) device monitoring and indoor localization system** implemented using ESP32 microcontrollers. It is designed to detect, track, and visualize active BLE devices in restricted or sensitive indoor environments such as examination halls, laboratories, and secure zones.
 
-🎯 Objectives
+The system passively monitors BLE advertising packets, processes unstable RSSI measurements using **Kalman filtering**, estimates distance via a **Log-Distance Path Loss model**, and localizes devices using **Trilateration** and **Min-Max algorithms**. A web-based interface provides real-time visualization of detected devices and their estimated positions.
 
-•Detect unauthorized BLE devices in restricted indoor areas
-•Reduce RSSI fluctuations using lightweight filtering techniques
-•Achieve accurate indoor localization using minimal hardware
-•Compare localization performance of Trilateration and Min-Max methods
-•Provide real-time monitoring through a web-based dashboard
+## 🎯 Objectives
 
+- [x] **Detect** unauthorized BLE devices in restricted indoor areas.
+- [x] **Reduce** RSSI fluctuations using lightweight Kalman filtering techniques.
+- [x] **Achieve** accurate indoor localization using minimal hardware costs.
+- [x] **Compare** localization performance of Trilateration vs. Min-Max methods.
+- [x] **Visualize** real-time monitoring through a web-based dashboard.
 
-🛠 Hardware Architecture
+---
 
-The system is built using four ESP32 microcontrollers:
+## 🛠 Hardware Architecture
 
-✅ Anchor Nodes (3 × ESP32)
-•Continuously scan for BLE advertisements
-•Measure RSSI from nearby BLE devices
-•Apply Kalman filtering for signal smoothing
-•Estimate distance using calibrated path-loss parameters
+The system utilizes **four ESP32 microcontrollers** in a distributed network:
 
-✅ Server Node (1 × ESP32)
-•Aggregates data from all anchors via ESP-NOW
-•Executes localization algorithms
-•Hosts a web server for visualization and user interaction
-•All anchors are placed at known coordinates in a 5 m × 5 m indoor environment.
+### 1. Anchor Nodes (3x ESP32)
+* Placed at fixed, known coordinates.
+* Continuously scan for BLE advertisements.
+* Measure RSSI from target devices.
+* Apply **Kalman Filtering** for signal smoothing.
+* Estimate distance using calibrated path-loss parameters.
 
+### 2. Server Node (1x ESP32)
+* Acts as the central processing unit.
+* Aggregates data from all anchors via **ESP-NOW** (low latency).
+* Executes the localization algorithms (Trilateration / Min-Max).
+* Hosts the **Async Web Server** for the user dashboard.
 
-📡 Signal Processing & RSSI Filtering
-•Raw RSSI values are highly unstable due to:
-•Multipath propagation
-•Human movement
-•Signal shadowing and interference
-•To overcome this, the project implements a Kalman Filter, which:
-•Smooths noisy RSSI samples
-•Outperforms standard moving average methods
-•Provides stable distance estimates even in dynamic environments
-•Kalman filtering significantly reduces distance estimation error, especially beyond 7 meters.
+---
 
-📐 Distance Estimation – Path Loss Model
+## 📡 Signal Processing & Algorithms
 
-•The system converts filtered RSSI values into distance using the Log-Distance Path Loss Model:
-•Environmental parameters (A and n) are calibrated experimentally
-•RSSI samples are collected at 1–5 meter intervals
-•Calibration is performed individually for each anchor
-•Provides environment-specific accuracy
-•This calibration ensures reliable distance estimation in indoor conditions.
+### 1. RSSI Filtering (Kalman Filter)
+Raw RSSI values are highly unstable due to multipath propagation, human movement, and signal shadowing. We implemented a **1D Kalman Filter** to:
+* Smooth noisy RSSI samples.
+* Outperform standard moving average methods.
+* Provide stable distance estimates even in dynamic environments.
 
-📍 Localization Algorithms
-🔹 Trilateration
+### 2. Distance Estimation
+Distances are calculated using the **Log-Distance Path Loss Model**:
+> **RSSI = -10n log10(d) + A**
 
-•Uses intersection of three distance-based circles
-•Highly sensitive to RSSI and distance errors
-•Performs well under Line-of-Sight (LOS) conditions
-•Fails under noisy or NLOS environments
+* **A:** Reference RSSI at 1 meter.
+* **n:** Path loss exponent (environmental factor).
+* *Note: Both parameters were calibrated experimentally for each specific anchor.*
 
-🔹 Min-Max Algorithm
+### 3. Localization Algorithms
 
-•Uses bounding boxes instead of circle intersections
-•Robust against distance estimation outliers
-•Computationally efficient
-•Provides stable localization in real-world conditions
+| Algorithm | Method | Strengths | Weaknesses |
+| :--- | :--- | :--- | :--- |
+| **Trilateration** | Intersection of 3 circles | Good in Line-of-Sight (LOS) | High sensitivity to RSSI errors; Fails in noisy environments |
+| **Min-Max** | Bounding box intersection | Robust against outliers; Computationally efficient | Slightly less precise in perfect conditions |
 
-📊 Result: Min-Max consistently outperformed Trilateration in noisy indoor environments.
+---
 
-🌐 Web-Based Visualization
+## 📊 Experimental Setup & Results
 
-•A web server hosted on the ESP32 server node provides:
-•Automatic BLE device scanning
-•Display of device names and MAC addresses
-•User-selectable device tracking
-•Real-time plotting of estimated position
-•Distance and localization algorithm comparison
-•Users can access the interface via a browser using the ESP32’s IP address.
+**Environment:** 5m × 5m indoor room
+**Anchor Coordinates:** `(0,0)`, `(5,0)`, `(0,5)`
+**Anchor Height:** 1.25 meters
 
-🧪 Experimental Setup
+### Key Findings
+1.  **Kalman Filtering** significantly stabilizes RSSI signals compared to raw data.
+2.  **Distance Accuracy** improves noticeably when using calibrated *A* and *n* values.
+3.  **Algorithm Performance:** The **Min-Max algorithm** consistently outperformed Trilateration in real-world, noisy indoor environments, providing more reliable coordinate estimation.
 
-•Environment: 5 m × 5 m indoor room
-•Anchor placement: (0,0), (5,0), (0,5)
-•Anchor height: 1.25 meters
-•Tested under LOS and simulated noisy conditions
-•Multiple trials conducted for validation
+---
 
-📊 Results & Key Findings
+## 🌐 Web Interface
 
-•Kalman filtering significantly stabilizes RSSI signals
-•Distance estimation accuracy improves over standard averaging
-•Trilateration suffers from large coordinate errors under noise
-•Min-Max provides reliable localization even in harsh conditions
-•System performs well using only four low-cost ESP32 devices
+The Server Node hosts a web page accessible via browser:
+* **Scan:** Automatically lists detected BLE devices (Name & MAC).
+* **Track:** User selects a specific target to track.
+* **Visualize:** Real-time 2D plot of the room showing the target's estimated position.
+* **Debug:** Displays real-time RSSI values and calculated distances from all 3 anchors.
+
+---
+
+## 📂 Folder Structure
 
 
 
