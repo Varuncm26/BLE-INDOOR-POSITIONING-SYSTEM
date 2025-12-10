@@ -63,11 +63,15 @@ Distances are calculated using the **Log-Distance Path Loss Model**:
 ### 3. Localization Algorithms
 
 | Algorithm | Method | Strengths | Weaknesses |
-| :--- | :--- | :--- | :--- | :--- |
-| **Trilateration** | Intersection of 3 circles | Good in Line-of-Sight (LOS) | High sensitivity to RSSI errors; Fails in noisy environments | <img width="391" height="324" alt="image" src="https://github.com/user-attachments/assets/6b3d5ad7-2f7f-43b6-85bc-7142617fb2c3" /> |
+| :--- | :--- | :--- | :--- | 
+| **Trilateration** | Intersection of 3 circles | Good in Line-of-Sight (LOS) | High sensitivity to RSSI errors; Fails in noisy environments |
+| **Min-Max** | Bounding box intersection | Robust against outliers; Computationally efficient | Slightly less precise in perfect conditions |
 
-| **Min-Max** | Bounding box intersection | Robust against outliers; Computationally efficient | Slightly less precise in perfect conditions | <img width="392" height="359" alt="image" src="https://github.com/user-attachments/assets/3a7d5305-eea4-4f71-9a80-98f2b91386b5" /> |
+ Trilateration
+<img width="391" height="324" alt="image" src="https://github.com/user-attachments/assets/e3b0ca7b-8eff-4d4d-aaaf-34afeeb4ef79" />
 
+ Min-Max
+<img width="392" height="359" alt="image" src="https://github.com/user-attachments/assets/1054f626-a916-4b90-ae05-a6a1590f60ec" />
 
 ---
 
