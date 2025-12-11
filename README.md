@@ -68,10 +68,10 @@ Distances are calculated using the **Log-Distance Path Loss Model**:
 | **Min-Max** | Bounding box intersection | Robust against outliers; Computationally efficient | Slightly less precise in perfect conditions |
 
  Trilateration
-<img width="1099" height="1080" alt="RF_14 pptx" src="https://github.com/user-attachments/assets/f326fdda-6e6c-4b46-93d7-5571d6842b1f" />
+<img width="334" height="319" alt="RF_14 pptx" src="https://github.com/user-attachments/assets/f326fdda-6e6c-4b46-93d7-5571d6842b1f" />
 
  Min-Max
-<img width="1073" height="1080" alt="RF_14 pptx (1)" src="https://github.com/user-attachments/assets/54be4b0b-8805-4116-9e28-a5c7187e96fa" />
+<img width="334" height="319" alt="RF_14 pptx (1)" src="https://github.com/user-attachments/assets/54be4b0b-8805-4116-9e28-a5c7187e96fa" />
 
 
 ---
